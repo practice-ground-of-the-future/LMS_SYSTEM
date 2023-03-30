@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Моя таблица</title>
+    <style>
+      table {
+          border-collapse: collapse;
+          width: 100%;
+      }
+     th, td {
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #6afff2;
+        color: #000000;
+
+          border-radius: 10px 10px 0px 0px;
+
+      }
+
+      /* изменяем цвет границы между колонками на красный */
+      th:not(:last-child),
+      td:not(:last-child) {
+        border-right-color: black;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Задание</th>
+        <th>Очки опыта</th>
+        <th>Срок сдачи</th>
+      </tr>
+        {% for t in tasks %}
+      <tr class="clickable" {% if now_time > t.dead_line %} bgcolor="red"  {% elif t.success == True%} bgcolor="#adff2f"
+          {% else %} bgcolor="#d3d3d3" {% endif %}>
+        <td>{{ t.task.name }}</td>
+        <td>{{ t.task.exp }}</td>
+        <td>{{ t.dead_line}}</td>
+      </tr>
+      <tr class="hidden-info">
+        <td colspan="3">{{ t.task.description }}
+            <a href="{% url 'firstapp:upload_file' t.id %}">загрузить</a>
+        </td>
+      </tr>
+        {% endfor %}
+    <script>
+      const rows = document.querySelectorAll('.clickable');
+      rows.forEach(row => {
+        row.addEventListener('click', () => {
+          row.nextElementSibling.classList.toggle('hidden');
+        });
+      });
+    </script>
+  </body>
+</html>

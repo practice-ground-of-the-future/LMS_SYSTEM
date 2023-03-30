@@ -1,0 +1,13 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+/media/products_images
+/media/user_code
+/media/users_images
+!/db.sqlite3
+!/.gitignore

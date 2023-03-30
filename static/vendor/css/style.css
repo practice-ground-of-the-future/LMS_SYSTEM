@@ -1,0 +1,78 @@
+table {width: 100%; border-collapse: separate; border-spacing: 4px;}
+table thead tr {color: #ffffff; font-weight: bold;}
+table thead tr td {border-radius: 4px 4px 0 0; background: #2e82c3;}
+table tbody tr td {border: 1px solid #2e82c3; border-radius: 4px; background: #cbdfef;}
+table tbody tr td:hover {background: #a2c3dd; transition-duration: 0.2s;}
+
+*{
+    font-family: 'Roboto', sans-serif;
+    background-color: #8fccfa;
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+nav {
+    background-color: #5b67e6;
+    display: flex;
+    justify-content: space-between  ;
+    margin-bottom: 50px;
+}
+
+/* убираем отступы и поля, а также list-style для "ul", 
+ * и добавляем "position:relative" */
+nav ul {
+    padding:0;
+    margin:0;
+    list-style: none;
+    position: relative; 
+    }
+
+/* применяем inline-block позиционирование к элементам навигации */
+nav ul li {
+    margin: 0px -7px 0 0;
+    display:inline-block;
+    background-color: #df5a32   ;
+    }
+
+/* стилизуем ссылки */
+nav a {
+    display:block;
+    background-color:   #5b67e6;
+    padding:0 20px;
+    color:#fff;
+    font-size:20px;
+    line-height: 60px;
+    text-decoration:none;
+    font-family: "Roboto";
+}
+
+/* изменяем цвет фона при наведении курсора */
+nav a:hover {
+    background-color: #b83131;
+}
+
+/* скрываем выпадающие списки по умолчанию
+			 * и задаем абсолютное позиционирование */
+             nav ul ul {
+			    display: none;
+			    position: absolute;
+			    top: 100%;
+			}
+			
+			/* отображаем выпадающий список при наведении */
+			nav ul li:hover > ul {
+			    display:inherit;
+			}
+			
+			/* первый уровень выпадающего списка */
+			nav ul ul li {
+			    min-width:200px;
+			    float:none;
+			    display:list-item;
+			    position: relative;
+			}

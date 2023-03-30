@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../static/vendor/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- Навигационная панель с выпадающим меню-->
+            <ul>
+                <li><a href="#">Главная</a></li>
+            </ul>
+
+            <ul>
+                <li><a href="{% url 'products:index' %}">Вход</a>
+                    <ul>
+                        <li><a href="{% url 'users:profile' %}">Профиль</a></li>
+                        <li><a href="{% url 'admin:index' %}">Админ панель</a></li>
+                    </ul>
+                </li>
+            </ul>
+    </nav>
+    </header>
+    <div class="content">
+        <table>
+            <thead>
+              <tr>
+                <td>фамилия имя</td>
+                  <td>задание</td>
+                  <td>время отправки</td>
+                <td>файл</td>
+                  <td>зачёт</td>
+              </tr>
+            </thead>
+            <tbody>
+            {% for f in file %}
+              <tr>
+                <td>{{ f.profile_task.user.first_name }} {{ f.profile_task.user.last_name }}</td>
+                  <td>{{ f.profile_task.task.name }}</td>
+                  <td>{{ f.created_timestamp}}</td>
+                <td><a href="{{ f.file.url}}" download> {{ f.file.name }} </a></td>
+                  <td><a href="{% url 'firstapp:success' f.id %}">выполнено</a></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
