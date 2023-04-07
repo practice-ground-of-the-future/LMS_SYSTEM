@@ -48,11 +48,13 @@
                         <li>
                             <a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a>
                         </li>
+                         <li>
+                             <a class="dropdown-item" href="{% url 'firstapp:todo_table' %}">Полученные задания</a>
+                         </li>
                         {% if user.is_superuser or user.is_staff %}
                         <li><a class="dropdown-item" href="{% url 'firstapp:views_file' %}">Высланные задания</a></li>
 
                             <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ-панель</a></li>
-                            <li><a class="dropdown-item" href="{% url 'firstapp:todo_table' %}">Полученные задания</a></li>
                         {% endif %}
                         <li>
                             <hr class="dropdown-divider">
