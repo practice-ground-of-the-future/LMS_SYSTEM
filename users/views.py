@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import auth, messages
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
@@ -19,7 +19,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('users:profile'))
     else:
         form = UserLoginForm()
     context = {'form': form}
@@ -66,3 +66,9 @@ def logout(request):
     """Выход из системы"""
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
+def view_profile(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    context = {'user': user}
+    return render(request, 'users/user.html', context)
