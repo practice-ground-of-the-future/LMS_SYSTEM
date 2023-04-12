@@ -27,6 +27,7 @@ def products(request):
 # Добавление задания в to-do таблицу
 def basket_add(request, product_id):
     product = Task.objects.get(id=product_id)
+    product.take = True
     basket = ProfileTask.objects.filter(user=request.user, task=product)
 
     if not basket.exists():

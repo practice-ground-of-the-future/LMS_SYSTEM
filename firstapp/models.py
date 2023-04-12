@@ -20,13 +20,14 @@ class Task(models.Model):
     description = models.TextField()
     exp = models.IntegerField(default=30)
     category = models.ForeignKey(to=TaskCategory, on_delete=models.CASCADE)
+    take = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
 
 
 class ProfileTask(models.Model):
-    """Модель описывающая задания пользотеля"""
+    """Модель описывающая задания пользователя"""
 
     # Функция подсчёта deadline задания
     @staticmethod
