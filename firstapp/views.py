@@ -72,7 +72,7 @@ def todo_table(request):
 
 # Отметка о выполнении задания
 def success(request, id_task):
-    task = FileModel.objects.get(id=id_task).profile_task
-    task.success = True
-    task.save()
+    do = FileModel.objects.get(id=id_task).profile_task
+    do.success = True
+    do.save()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])

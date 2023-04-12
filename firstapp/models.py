@@ -35,7 +35,6 @@ class ProfileTask(models.Model):
 
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     task = models.ForeignKey(to=Task, on_delete=models.CASCADE)
-    quantity = models.PositiveSmallIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     dead_line = models.DateTimeField(default=get_dead_line())
     success = models.BooleanField(default=False)

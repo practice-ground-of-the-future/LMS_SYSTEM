@@ -72,3 +72,9 @@ def view_profile(request, user_id):
     user = get_object_or_404(User, id=user_id)
     context = {'user': user}
     return render(request, 'users/user.html', context)
+
+
+"""
+   Написать авто тестирование задания 
+   Отображение exp в профиле
+"""
