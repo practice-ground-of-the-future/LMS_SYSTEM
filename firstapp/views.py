@@ -30,10 +30,9 @@ def basket_add(request, product_id):
     basket = ProfileTask.objects.filter(user=request.user, task=product)
 
     if not basket.exists():
-        ProfileTask.objects.create(user=request.user, task=product, quantity=1)
+        ProfileTask.objects.create(user=request.user, task=product)
     else:
         basket = basket.first()
-        basket.quantity += 1
         basket.save()
 
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
@@ -72,7 +71,10 @@ def todo_table(request):
 
 # Отметка о выполнении задания
 def success(request, id_task):
-    do = FileModel.objects.get(id=id_task).profile_task
-    do.success = True
-    do.save()
+    current_task = FileModel.objects.get(id=id_task).profile_task
+    current_task.success = True
+    current_user = current_task.user
+    current_user.exp += current_task.task.exp
+    current_task.save()
+    current_user.save()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
